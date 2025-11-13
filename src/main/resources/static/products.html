@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Products - Slooze</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+
+</head>
+<body>
+<nav class="nav glass-effect">
+    <div class="nav-content">
+        <div class="brand">
+            <div class="brand-icon">
+                <div class="icon-glow"></div>
+                <svg viewBox="0 0 50 50" width="32" height="32">
+                    <circle cx="25" cy="25" r="20" fill="currentColor" opacity="0.2"/>
+                    <path d="M15 25 L22 18 L22 32 Z" fill="currentColor"/>
+                    <path d="M28 18 L35 25 L28 32 Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <span class="gradient-text">Slooze</span>
+        </div>
+        <div class="menu" id="menu"></div>
+        <div id="theme-toggle" class="theme-toggle glass-effect">
+            <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18">
+                <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+            </svg>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="page-header">
+        <div class="header-content">
+            <div class="badge gradient-badge">
+                <svg viewBox="0 0 24 24" width="14" height="14">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                <span>Live Inventory</span>
+            </div>
+            <h2 class="gradient-text">Product Management</h2>
+            <p class="subtitle">Manage your commodity inventory in real-time</p>
+        </div>
+        <button id="addBtn" class="btn-primary gradient-btn">
+        <span class="btn-content">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2"/>
+            <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <span>Add Product</span>
+        </span>
+            <span class="btn-shine"></span>
+        </button>
+    </div>
+
+    <div id="alerts"></div>
+
+    <div class="table-wrapper glass-effect">
+        <div class="table-header">
+            <div class="search-wrapper">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </div>
+        </div>
+        <table id="productsTable">
+            <thead>
+            <tr>
+                <th>
+                    <div class="th-content">
+                        <span>ID</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <span>Name</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <span>Category</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <span>Quantity</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <span>Price</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <span>Actions</span>
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</main>
+
+<div id="productModal" class="modal hidden">
+    <div class="modal-overlay"></div>
+    <div class="modal-content glass-effect">
+        <div class="modal-glow"></div>
+
+        <div class="modal-header">
+            <div>
+                <h3 id="modalTitle">Add Product</h3>
+                <p class="modal-subtitle">Enter product details below</p>
+            </div>
+            <button id="closeModal" class="close-btn glass-effect">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2"/>
+                    <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="pname">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M20 7h-9M14 17H5M17 11h-2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    Product Name
+                </label>
+                <div class="input-wrapper">
+                    <input id="pname" placeholder="Enter product name" />
+                    <div class="input-highlight"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pcat">
+                    <svg viewBox="0 0 24 24" width="16" height="16">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    Category
+                </label>
+                <div class="input-wrapper">
+                    <input id="pcat" placeholder="Enter category" />
+                    <div class="input-highlight"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pqty">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <line x1="8" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="18" x2="21" y2="18" stroke="currentColor" stroke-width="2"/>
+                            <line x1="3" y1="6" x2="3.01" y2="6" stroke="currentColor" stroke-width="2"/>
+                            <line x1="3" y1="12" x2="3.01" y2="12" stroke="currentColor" stroke-width="2"/>
+                            <line x1="3" y1="18" x2="3.01" y2="18" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Quantity
+                    </label>
+                    <div class="input-wrapper">
+                        <input id="pqty" type="number" placeholder="0" />
+                        <div class="input-highlight"></div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pprice">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        Price
+                    </label>
+                    <div class="input-wrapper">
+                        <input id="pprice" type="number" step="0.01" placeholder="0.00" />
+                        <div class="input-highlight"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button id="saveProduct" class="btn-primary gradient-btn">
+          <span class="btn-content">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" stroke="currentColor" stroke-width="2" fill="none"/>
+              <polyline points="17 21 17 13 7 13 7 21" stroke="currentColor" stroke-width="2" fill="none"/>
+              <polyline points="7 3 7 8 15 8" stroke="currentColor" stroke-width="2" fill="none"/>
+            </svg>
+            <span>Save Product</span>
+          </span>
+                <span class="btn-shine"></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="/products.js"></script>
+</body>
+</html>

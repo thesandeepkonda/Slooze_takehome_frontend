@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Slooze Commodities - Manager Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/styles.css">
+
+
+</head>
+<body>
+<nav class="nav glass-effect" role="navigation" aria-label="Main navigation">
+    <div class="nav-content">
+        <div class="brand">
+            <div class="brand-icon" aria-hidden="true">
+                <svg viewBox="0 0 50 50" width="34" height="34">
+                    <circle cx="25" cy="25" r="20" fill="currentColor" opacity="0.12"/>
+                    <path d="M15 25 L22 18 L22 32 Z" fill="currentColor"/>
+                    <path d="M28 18 L35 25 L28 32 Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <span>Slooze Commodities</span>
+        </div>
+
+        <div class="menu" id="menu" aria-hidden="false">
+            <a href="/dashboard.html" class="active">Dashboard</a>
+            <a href="/products.html">Products</a>
+            <a href="/orders.html">Orders</a>
+            <a href="/analytics.html">Analytics</a>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:12px">
+            <div id="theme-toggle" class="theme-toggle glass-effect" role="button" aria-label="Toggle theme">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <circle cx="12" cy="12" r="5" fill="currentColor"/>
+                    <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
+                    <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2"/>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2"/>
+                    <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2"/>
+                    <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2"/>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                </svg>
+            </div>
+
+            <a href="/logout" class="btn-primary" style="padding:10px 12px;border-radius:12px;font-size:14px">Log out</a>
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <div class="page-header">
+        <div class="header-content">
+            <div class="badge gradient-badge">Manager</div>
+            <h2>Manager Dashboard</h2>
+            <p class="subtitle">Overview of commodities, orders and inventory status</p>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:center">
+            <div class="badge">Today: <strong id="today-date" style="margin-left:8px"></strong></div>
+            <button id="refreshBtn" class="btn-primary">Refresh</button>
+        </div>
+    </div>
+
+    <!-- Summary cards -->
+    <div id="summary" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px">
+        <!-- cards populated by JS -->
+    </div>
+
+    <!-- Table -->
+    <div class="table-wrapper">
+        <div class="table-header">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+                <div class="search-wrapper">
+                    <svg viewBox="0 0 24 24" width="18" height="18" style="opacity:.6"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+                    <input id="searchInput" placeholder="Search products or orders" style="border:none;background:transparent;outline:none;padding:8px 12px">
+                </div>
+                <div>
+                    <button id="addBtn">Add Item</button>
+                </div>
+            </div>
+        </div>
+
+        <table aria-label="Inventory table">
+            <thead>
+            <tr>
+                <th><div class="th-content">Product <svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 5v14" stroke="currentColor" stroke-width="2" fill="none"/></svg></div></th>
+                <th><div class="th-content">SKU</div></th>
+                <th><div class="th-content">Stock</div></th>
+                <th><div class="th-content">Status</div></th>
+                <th><div class="th-content">Actions</div></th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            <!-- rows injected by JS -->
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script src="/dashboard.js"></script>
+</body>
+</html>
