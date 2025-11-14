@@ -5,33 +5,54 @@
     <title>Slooze Commodities - Manager Dashboard</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="/styles.css">
-
-
 </head>
 <body>
+<div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+</div>
+
 <nav class="nav glass-effect" role="navigation" aria-label="Main navigation">
     <div class="nav-content">
         <div class="brand">
             <div class="brand-icon" aria-hidden="true">
+                <div class="icon-glow"></div>
                 <svg viewBox="0 0 50 50" width="34" height="34">
                     <circle cx="25" cy="25" r="20" fill="currentColor" opacity="0.12"/>
                     <path d="M15 25 L22 18 L22 32 Z" fill="currentColor"/>
                     <path d="M28 18 L35 25 L28 32 Z" fill="currentColor"/>
                 </svg>
             </div>
-            <span>Slooze Commodities</span>
+            <span class="gradient-text">Slooze</span>
         </div>
 
-        <div class="menu" id="menu" aria-hidden="false">
-            <a href="/dashboard.html" class="active">Dashboard</a>
-            <a href="/products.html">Products</a>
-            <a href="/orders.html">Orders</a>
-            <a href="/analytics.html">Analytics</a>
+        <div class="menu" id="menu">
+            <a href="/dashboard.html" class="menu-link active">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" fill="none"/>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="/products.html" class="menu-link">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <line x1="9" y1="9" x2="15" y2="9" stroke="currentColor" stroke-width="2"/>
+                    <line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span>Products</span>
+            </a>
         </div>
 
-        <div style="display:flex;align-items:center;gap:12px">
+        <div class="nav-actions">
             <div id="theme-toggle" class="theme-toggle glass-effect" role="button" aria-label="Toggle theme">
-                <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18">
                     <circle cx="12" cy="12" r="5" fill="currentColor"/>
                     <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2"/>
                     <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2"/>
@@ -42,12 +63,19 @@
                     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2"/>
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2"/>
                 </svg>
-                <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
                 </svg>
             </div>
 
-            <a href="/logout" class="btn-primary" style="padding:10px 12px;border-radius:12px;font-size:14px">Log out</a>
+            <a href="/logout" class="btn-logout glass-effect">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span>Log out</span>
+            </a>
         </div>
     </div>
 </nav>
@@ -55,44 +83,119 @@
 <main class="container">
     <div class="page-header">
         <div class="header-content">
-            <div class="badge gradient-badge">Manager</div>
-            <h2>Manager Dashboard</h2>
+            <div class="badge gradient-badge">
+                <svg viewBox="0 0 24 24" width="14" height="14">
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor"/>
+                </svg>
+                <span>Manager</span>
+            </div>
+            <h2 class="gradient-text">Manager Dashboard</h2>
             <p class="subtitle">Overview of commodities, orders and inventory status</p>
         </div>
 
-        <div style="display:flex;gap:12px;align-items:center">
-            <div class="badge">Today: <strong id="today-date" style="margin-left:8px"></strong></div>
-            <button id="refreshBtn" class="btn-primary">Refresh</button>
+        <div class="header-actions">
+            <div class="date-badge glass-effect">
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                    <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
+                    <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/>
+                    <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span id="today-date"></span>
+            </div>
+            <button id="refreshBtn" class="btn-primary gradient-btn">
+                <span class="btn-content">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <polyline points="23 4 23 10 17 10" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <polyline points="1 20 1 14 7 14" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" stroke="currentColor" stroke-width="2" fill="none"/>
+                    </svg>
+                    <span>Refresh</span>
+                </span>
+                <span class="btn-shine"></span>
+            </button>
         </div>
     </div>
 
     <!-- Summary cards -->
-    <div id="summary" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px">
+    <div id="summary" class="summary-grid">
         <!-- cards populated by JS -->
     </div>
 
     <!-- Table -->
-    <div class="table-wrapper">
+    <div class="table-wrapper glass-effect">
         <div class="table-header">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-                <div class="search-wrapper">
-                    <svg viewBox="0 0 24 24" width="18" height="18" style="opacity:.6"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-                    <input id="searchInput" placeholder="Search products or orders" style="border:none;background:transparent;outline:none;padding:8px 12px">
+            <div class="table-header-content">
+                <div class="enhanced-search">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <input id="searchInput" placeholder="Search products or orders" class="search-input">
                 </div>
                 <div>
-                    <button id="addBtn">Add Item</button>
+                    <button id="addBtn" class="btn-primary gradient-btn">
+                        <span class="btn-content">
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <line x1="12" y1="5" x2="12" y2="19" stroke="currentColor" stroke-width="2"/>
+                                <line x1="5" y1="12" x2="19" y2="12" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                            <span>Add Item</span>
+                        </span>
+                        <span class="btn-shine"></span>
+                    </button>
                 </div>
             </div>
         </div>
 
-        <table aria-label="Inventory table">
+        <table>
             <thead>
             <tr>
-                <th><div class="th-content">Product <svg viewBox="0 0 24 24" width="14" height="14"><path d="M12 5v14" stroke="currentColor" stroke-width="2" fill="none"/></svg></div></th>
-                <th><div class="th-content">SKU</div></th>
-                <th><div class="th-content">Stock</div></th>
-                <th><div class="th-content">Status</div></th>
-                <th><div class="th-content">Actions</div></th>
+                <th>
+                    <div class="th-content">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span>Product</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14" class="sort-icon">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <rect x="8" y="2" width="8" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span>SKU</span>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span>Stock</span>
+                        <svg viewBox="0 0 24 24" width="14" height="14" class="sort-icon">
+                            <polyline points="6 9 12 15 18 9" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <svg viewBox="0 0 24 24" width="16" height="16">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" fill="none"/>
+                        </svg>
+                        <span>Status</span>
+                    </div>
+                </th>
+                <th>
+                    <div class="th-content">
+                        <span>Actions</span>
+                    </div>
+                </th>
             </tr>
             </thead>
             <tbody id="tableBody">
