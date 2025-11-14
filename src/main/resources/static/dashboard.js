@@ -23,6 +23,22 @@
   themeToggle && themeToggle.addEventListener('click', toggleTheme);
   initTheme();
 
+  // Check authentication
+  const token = localStorage.getItem('token');
+  const role = localStorage.getItem('role');
+
+  if (!token) {
+    alert('You must login to access the dashboard. Redirecting to login...');
+    setTimeout(() => window.location.href = '/', 1000);
+    return;
+  }
+
+  if (role !== 'MANAGER') {
+    alert('Access denied. This page is for managers only.');
+    setTimeout(() => window.location.href = '/products.html', 1000);
+    return;
+  }
+
   // Set today's date
   const todayEl = document.getElementById('today-date');
   if (todayEl) {
@@ -63,7 +79,9 @@
     { product: 'Wheat Batch A', sku: 'WH-001', stock: 1200, status: 'Healthy' },
     { product: 'Rice Premium', sku: 'RC-010', stock: 40, status: 'Low' },
     { product: 'Corn Grade B', sku: 'CR-212', stock: 220, status: 'Healthy' },
-    { product: 'Soybeans Lot 9', sku: 'SB-909', stock: 8, status: 'Critical' }
+    { product: 'Soybeans Lot 9', sku: 'SB-909', stock: 8, status: 'Critical' },
+    { product: 'Barley Grade A', sku: 'BR-445', stock: 850, status: 'Healthy' },
+    { product: 'Oats Premium', sku: 'OT-332', stock: 15, status: 'Low' }
   ];
 
   function renderTable(rows) {
@@ -136,29 +154,31 @@
 
   // Refresh button
   const refreshBtn = document.getElementById('refreshBtn');
-  refreshBtn && refreshBtn.addEventListener('click', () => {
-    const btnContent = refreshBtn.querySelector('.btn-content span');
-    const originalText = btnContent ? btnContent.textContent : 'Refresh';
+  if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+      const btnContent = refreshBtn.querySelector('.btn-content span');
+      const originalText = btnContent ? btnContent.textContent : 'Refresh';
 
-    refreshBtn.disabled = true;
-    refreshBtn.style.opacity = '0.7';
-    refreshBtn.style.cursor = 'not-allowed';
-    if (btnContent) btnContent.textContent = 'Refreshing...';
+      refreshBtn.disabled = true;
+      refreshBtn.style.opacity = '0.7';
+      refreshBtn.style.cursor = 'not-allowed';
+      if (btnContent) btnContent.textContent = 'Refreshing...';
 
-    setTimeout(() => {
-      // in real app: fetch('/api/summary').then(...)
-      renderSummary(demoSummary);
-      renderTable(demoRows);
+      setTimeout(() => {
+        // in real app: fetch('/api/summary').then(...)
+        renderSummary(demoSummary);
+        renderTable(demoRows);
 
-      refreshBtn.disabled = false;
-      refreshBtn.style.opacity = '1';
-      refreshBtn.style.cursor = 'pointer';
-      if (btnContent) btnContent.textContent = originalText;
+        refreshBtn.disabled = false;
+        refreshBtn.style.opacity = '1';
+        refreshBtn.style.cursor = 'pointer';
+        if (btnContent) btnContent.textContent = originalText;
 
-      // Show success notification
-      showNotification('Data refreshed successfully!', 'success');
-    }, 700);
-  });
+        // Show success notification
+        showNotification('Data refreshed successfully!', 'success');
+      }, 700);
+    });
+  }
 
   // Search filter
   const searchInput = document.getElementById('searchInput');
@@ -174,9 +194,14 @@
 
   // Add item (demo)
   const addBtn = document.getElementById('addBtn');
-  addBtn && addBtn.addEventListener('click', () => {
-    showNotification('This is a demo. Implement add-item modal or navigation here.', 'info');
-  });
+  if (addBtn) {
+    addBtn.addEventListener('click', () => {
+      showNotification('This is a demo. Navigate to Products page to add items.', 'info');
+      setTimeout(() => {
+        window.location.href = '/products.html';
+      }, 1500);
+    });
+  }
 
   // Notification function
   function showNotification(message, type = 'info') {
@@ -233,6 +258,34 @@
       notification.style.animation = 'fadeOut 0.3s ease';
       setTimeout(() => notification.remove(), 300);
     }, 3000);
+  }
+
+  // Logout handling
+  const logoutBtn = document.querySelector('.btn-logout');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      try {
+        await fetch('/auth/logout', {
+          method: 'POST',
+          headers: {'Authorization': 'Bearer ' + token}
+        });
+      } catch (err) {
+        console.error('Logout error:', err);
+      }
+
+      // Clear localStorage
+      localStorage.clear();
+
+      // Show notification
+      showNotification('Logged out successfully!', 'success');
+
+      // Redirect to login
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 800);
+    });
   }
 
 })();
